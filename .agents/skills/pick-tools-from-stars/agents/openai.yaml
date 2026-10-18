@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pick tools from my GitHub stars"
+  short_description: "Recommend tools/skills from your GitHub stars and official catalogs"
+  default_prompt: "Use $pick-tools-from-stars to find the best tool for this task."
