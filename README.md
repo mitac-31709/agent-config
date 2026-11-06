@@ -1,10 +1,23 @@
-# agent-skills
+# agent-config
 
-Agent skills in the open [Agent Skills](https://agentskills.io) format (`SKILL.md`), usable with Codex, Claude Code, Cursor, and other agents that read `.agents/skills/`.
+Public home for shareable agent skills, work preferences, and reference links.
+
+Skills use the open [Agent Skills](https://agentskills.io) format (`SKILL.md`) and can be used with Codex, Claude Code, Cursor, and other agents that read `.agents/skills/`.
+
+This repository is an initial public collection. It is not a full export of any agent, bot, or private workspace. See [MANIFEST.md](MANIFEST.md).
+
+## Layout
+
+| Path | Contents |
+|------|----------|
+| `.agents/skills/` | Reusable agent skills |
+| `rules/` | Owner work preferences (not system prompts, and not safety policy) |
+| `references/` | Index of public docs and catalogs (URLs only) |
 
 ## Skills
 
 ### `pick-tools-from-stars`
+
 When a task needs a tool, library, CLI, MCP server, or agent skill, the agent:
 
 1. clarifies the need and constraints (OS, GPU, license, offline, ...),
@@ -20,30 +33,40 @@ It is read-only by default: installing or starring anything requires your OK.
 Copy the skill folder into the repo where you run your agent:
 
 ```bash
-git clone https://github.com/mitac-31709/agent-skills /tmp/agent-skills
+git clone https://github.com/mitac-31709/agent-config /tmp/agent-config
 mkdir -p .agents/skills
-cp -r /tmp/agent-skills/.agents/skills/pick-tools-from-stars .agents/skills/
+cp -r /tmp/agent-config/.agents/skills/pick-tools-from-stars .agents/skills/
 ```
 
-For local Codex you can instead put it in `~/.agents/skills/` to use it in every repo.
+The earlier repository name `agent-skills` redirects here.
+
+For local Codex you can instead put the skill in `~/.agents/skills/` to use it in every repo.
 
 ### Optional: bundle a snapshot of your stars
+
 Without a snapshot the skill fetches your stars live (needs network and `gh`). To make it work offline or faster:
 
 ```bash
 python3 .agents/skills/pick-tools-from-stars/scripts/refresh_stars.py <your-github-login>
 ```
 
-This writes `references/stars.csv` and `references/stars_by_list.md` (star-list names are included when `gh` is logged in as that user). The data is personal; `.gitignore` excludes it here. Commit it only to a private repo.
+This writes `references/stars.csv` and `references/stars_by_list.md` inside the skill folder (star-list names are included when `gh` is logged in as that user). The data is personal; `.gitignore` excludes it. Commit it only to a private repo.
 
-## Codex cloud: current workaround
-Codex cloud is documented to load skills from the selected repo's `.agents/skills/`, but repo skills currently aren't auto-discovered in cloud tasks ([openai/codex#52266](https://github.com/openai/codex/issues/52266)). Until that's fixed, invoke the skill explicitly in your prompt:
+## Rules and references
+
+- [`rules/work-preferences.md`](rules/work-preferences.md) — how the owner prefers agents to work. Preferences only.
+- [`references/index.md`](references/index.md) — public documentation and catalog URLs. No third-party skill text.
+
+## Codex cloud note
+
+Codex documents that skills stored in the selected repository are available in cloud tasks ([cloud environments](https://learn.chatgpt.com/docs/environments/cloud-environments)). Automatic discovery of those repository skills is still reported as missing ([openai/codex#52266](https://github.com/openai/codex/issues/52266)). If the skill is not offered automatically, invoke it explicitly:
 
 ```
 $pick-tools-from-stars find a good tool for ...
 ```
 
-or say "read `.agents/skills/pick-tools-from-stars/SKILL.md` and follow it". `AGENTS.md` here points to the skill as an extra fallback.
+or say "read `.agents/skills/pick-tools-from-stars/SKILL.md` and follow it". `AGENTS.md` points to the skill as an extra fallback.
 
 ## License
+
 [MIT](LICENSE)
