@@ -1,20 +1,31 @@
 # Official references (URL index)
 
-Public documentation and catalogs useful for agent skills and tooling. This file lists URLs only. It does not vendor third-party skill bodies.
+Public documentation and catalogs useful for agent skills and tooling. This file lists URLs only. It does not copy third-party skill bodies into this repository.
 
-The list is not exhaustive. Entries below are ones `pick-tools-from-stars` already cites, checked as public vendor repositories on 2026-11-06. Confirm a repository is still owned by that vendor before treating it as official.
+Pinned checkouts of the git repositories live under `external/catalogs/` as submodules. See that directory's README for licenses, commit pins, and why a checkout is not the same as enabling a product.
+
+The list is not exhaustive. Entries below are ones this repo already cites, checked as public pages or vendor repositories on 2026-11-06. Confirm a repository is still owned by that vendor before treating it as official.
 
 ## Skill format
 
 - Agent Skills site: https://agentskills.io
+- Specification repository (pinned): https://github.com/agentskills/agentskills
 
-## Vendor skill and plugin catalogs (examples)
+## Vendor skill and plugin catalogs
 
-- OpenAI skills: https://github.com/openai/skills
-- Anthropic skills: https://github.com/anthropics/skills
-- Anthropic Claude plugins (official): https://github.com/anthropics/claude-plugins-official
-- Vercel Labs agent-skills: https://github.com/vercel-labs/agent-skills
-- Hugging Face skills: https://github.com/huggingface/skills
+Pinned as submodules unless noted:
+
+- OpenAI plugins (current Codex examples, pinned): https://github.com/openai/plugins
+- OpenAI skills: https://github.com/openai/skills — still cited by `pick-tools-from-stars`, but upstream marks this repository deprecated and points to `openai/plugins`. Not pinned.
+- Anthropic skills (pinned): https://github.com/anthropics/skills
+- Anthropic Claude plugins (pinned): https://github.com/anthropics/claude-plugins-official
+- Cursor plugins (pinned): https://github.com/cursor/plugins
+- GitHub awesome-copilot (pinned): https://github.com/github/awesome-copilot
+- Google skills (pinned): https://github.com/google/skills
+- Vercel Labs agent-skills (pinned): https://github.com/vercel-labs/agent-skills
+- Hugging Face skills (pinned): https://github.com/huggingface/skills
+- Microsoft skills (pinned): https://github.com/microsoft/skills
+- Cloudflare skills (pinned): https://github.com/cloudflare/skills
 
 ## Related docs and issues
 
