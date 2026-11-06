@@ -14,6 +14,10 @@ This repo ships agent skills under `.agents/skills/`. If a skill below isn't in 
 
 See `references/index.md` for public skill-format and catalog URLs. The index is not a complete catalog and does not include third-party skill text.
 
+## External catalogs
+
+`external/catalogs/` is a set of pinned upstream checkouts. They are not skills of this repo, and being checked out does not enable them in a product. Do not run their installers, hooks, or package scripts unless the current task explicitly asks for that. Details and the license list are in `external/catalogs/README.md`.
+
 ## Scope
 
 `MANIFEST.md` lists what this public repository contains. It is an initial shareable set, not a full export of any agent.

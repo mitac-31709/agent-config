@@ -13,6 +13,7 @@ This repository is an initial public collection. It is not a full export of any 
 | `.agents/skills/` | Reusable agent skills |
 | `rules/` | Owner work preferences (not system prompts, and not safety policy) |
 | `references/` | Index of public docs and catalogs (URLs only) |
+| `external/catalogs/` | Pinned upstream catalog checkouts (gitlinks, not copied files) |
 
 ## Skills
 
@@ -38,7 +39,7 @@ mkdir -p .agents/skills
 cp -r /tmp/agent-config/.agents/skills/pick-tools-from-stars .agents/skills/
 ```
 
-The earlier repository name `agent-skills` redirects here.
+The earlier repository name `agent-skills` redirects here. This copy step only needs the skill in this repository. It does not initialize `external/catalogs/`.
 
 For local Codex you can instead put the skill in `~/.agents/skills/` to use it in every repo.
 
@@ -55,7 +56,25 @@ This writes `references/stars.csv` and `references/stars_by_list.md` inside the 
 ## Rules and references
 
 - [`rules/work-preferences.md`](rules/work-preferences.md) — how the owner prefers agents to work. Preferences only.
-- [`references/index.md`](references/index.md) — public documentation and catalog URLs. No third-party skill text.
+- [`references/index.md`](references/index.md) — public documentation and catalog URLs. No third-party skill text copied into this repo.
+
+## Upstream catalogs
+
+[`external/catalogs/`](external/catalogs/README.md) pins official skill and plugin catalogs that this repo already cites. Each entry is a submodule: an HTTPS URL plus a gitlink to one commit. The upstream files are not copied into this repository.
+
+A checkout of this repo does not enable those catalogs in Codex, Claude Code, Cursor, Copilot, or any other product. `.agents/skills/` still contains only `pick-tools-from-stars`. See `external/catalogs/README.md` for the inventory, licenses, init commands, and the separate install step each product documents.
+
+Direct pins only:
+
+```bash
+git clone https://github.com/mitac-31709/agent-config.git
+cd agent-config
+git submodule update --init
+```
+
+`git clone --recurse-submodules` also fetches nested submodules declared by those upstream repos. Today that means the Google Cloud plugins inside `google/skills`. Neither command runs upstream installers. An existing clone uses `git submodule update --init`.
+
+The committed gitlink is a fixed commit. Upstream moving its default branch does not move this pin. Updating means checking out a new commit and committing the new gitlink.
 
 ## Codex cloud note
 
